@@ -10,7 +10,8 @@ function staticLoadPlaces() {
       location: {
         lat: 41.388137,
         lng: 2.1127288
-      }
+      },
+      isModel: true
     }
   ];
 }
@@ -27,10 +28,12 @@ function renderPlaces(places) {
       "gps-entity-place",
       `latitude: ${latitude}; longitude: ${longitude};`
     );
-    model.setAttribute("gltf-model", "./assets/magnemite/scene.gltf");
-    model.setAttribute("rotation", "0 180 0");
+    if (model.isModel) {
+      model.setAttribute("gltf-model", "./assets/magnemite/scene.gltf");
+      model.setAttribute("rotation", "0 180 0");
+    }
     model.setAttribute("animation-mixer", "");
-    model.setAttribute("scale", "0.5 0.5 0.5");
+    model.setAttribute("scale", "30 30 30");
 
     model.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
